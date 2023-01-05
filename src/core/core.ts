@@ -79,7 +79,7 @@ async function translateWithLibre(
 
   global.totalTranslated = global.totalTranslated + 1;
 
-  return data?.translatedText ? data?.translatedText : default_value;
+  return capitalizeFirstLetter(data?.translatedText ? data?.translatedText : default_value);
 }
 
 async function translateWithArgos(
@@ -106,7 +106,7 @@ async function translateWithArgos(
 
   global.totalTranslated = global.totalTranslated + 1;
 
-  return data?.translatedText ? data?.translatedText : default_value;
+  return capitalizeFirstLetter(data?.translatedText ? data?.translatedText : default_value);
 }
 
 async function translateWithGoogle(
@@ -123,7 +123,7 @@ async function translateWithGoogle(
 
   global.totalTranslated = global.totalTranslated + 1;
 
-  return text;
+  return capitalizeFirstLetter(text);
 }
 
 export async function getFile(objectPath: string) {
@@ -185,7 +185,9 @@ export function safeValueTransition(value: string) {
 
   return value;
 }
-
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 function valueIsSafe(value: string): ValueSafety {
   let result: ValueSafety = {
     is_safe: true,
