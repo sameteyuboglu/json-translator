@@ -55,7 +55,9 @@ export async function plaintranslate(
     }
   }
 }
-
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 async function translateWithLibre(
   word: string,
   from: LanguageCode,
@@ -79,7 +81,7 @@ async function translateWithLibre(
 
   global.totalTranslated = global.totalTranslated + 1;
 
-  return data?.translatedText ? data?.translatedText : default_value;
+  return capitalizeFirstLetter(data?.translatedText ? data?.translatedText : default_value);
 }
 
 async function translateWithArgos(
@@ -106,7 +108,7 @@ async function translateWithArgos(
 
   global.totalTranslated = global.totalTranslated + 1;
 
-  return data?.translatedText ? data?.translatedText : default_value;
+  return capitalizeFirstLetter(data?.translatedText ? data?.translatedText : default_value);
 }
 
 async function translateWithGoogle(
@@ -123,7 +125,7 @@ async function translateWithGoogle(
 
   global.totalTranslated = global.totalTranslated + 1;
 
-  return text;
+  return capitalizeFirstLetter(text);
 }
 
 export async function getFile(objectPath: string) {
@@ -183,7 +185,7 @@ export function safeValueTransition(value: string) {
       break;
   }
 
-  return value;
+  return capitalizeFirstLetter(value);
 }
 
 function valueIsSafe(value: string): ValueSafety {
